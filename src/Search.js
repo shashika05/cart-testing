@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Home() {
+export default function Search() {
   return (
     <View style={styles.container}>
-      <Text>Home Page</Text>
+      <Text>Search Page</Text>
     </View>
   );
 }
