@@ -1,10 +1,12 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const CartButton = () => {
+  const navigation = useNavigation();
   const onCartPress = () => {
-    console.log(`Cart button Pressed`);
+    navigation.navigate("Cart");
   };
   return (
     <TouchableOpacity onPress={onCartPress}>
