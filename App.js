@@ -10,6 +10,8 @@ import { Feather } from "@expo/vector-icons";
 import Home from "./src/Home";
 import Search from "./src/Search";
 import Cart from "./src/Cart";
+import Favourite from "./src/Favourite";
+import Product from "./src/Favourite";
 
 // Components
 import SearchButton from "./src/components/SeachButton";
@@ -17,6 +19,7 @@ import CartButton from "./src/components/CartButton";
 import BackButton from "./src/components/BackButton";
 import SearchInput from "./src/components/SearchInput";
 import ClearCartButton from "./src/components/ClearCartButton";
+import FavouriteButton from "./src/components/FavouriteButton";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +32,12 @@ const App = () => {
           name="Home"
           options={{
             headerRight: () => <SearchButton />,
-            headerLeft: () => <CartButton />,
+            headerLeft: () => (
+              <View style={tailwind("flex-row")}>
+                <CartButton />
+                <FavouriteButton />
+              </View>
+            ),
             headerTitle: "Home",
             headerTitleAlign: "center",
           }}
@@ -43,12 +51,6 @@ const App = () => {
             headerTitle: () => <SearchInput />,
             headerTitleAlign: "center",
             headerBackVisible: false,
-            // header: () => (
-            //   <View style={tailwind("absolute top-32")}>
-            //     <BackButton />
-            //     <SearchInput />
-            //   </View>
-            // ),
           }}
         />
         <Stack.Screen
@@ -59,6 +61,16 @@ const App = () => {
             headerTitleAlign: "center",
             headerLeft: () => <BackButton />,
             headerRight: () => <ClearCartButton />,
+          }}
+        />
+        <Stack.Screen
+          children={() => <Favourite />}
+          name="Favourite"
+          options={{
+            headerTitle: "Favourite",
+            headerTitleAlign: "center",
+            headerLeft: () => <BackButton />,
+            headerRight: () => <SearchButton />,
           }}
         />
       </Stack.Navigator>

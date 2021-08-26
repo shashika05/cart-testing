@@ -1,10 +1,10 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
 const ClearCartButton = () => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const onClearCartPress = () => {
     console.log(`Clear cart pressed`);
   };

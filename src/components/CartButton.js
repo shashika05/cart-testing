@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const CartButton = () => {
@@ -10,7 +10,7 @@ const CartButton = () => {
   };
   return (
     <TouchableOpacity onPress={onCartPress}>
-      <Feather name="shopping-cart" size={23} color="black" />
+      <MaterialCommunityIcons name="cart-outline" size={24} color="black" />
     </TouchableOpacity>
   );
 };
