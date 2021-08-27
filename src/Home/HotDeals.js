@@ -3,24 +3,25 @@ import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import tailwind from "tailwind-rn";
 
-import greet from "../greet";
-import dataArray from "../dataArray";
+import dataArray from "../../dataArray";
 
-export default function Home() {
+const HotDeals = ({
+  onProductPress,
+  onFavouriteButtonPress,
+  onCartButtonPress,
+}) => {
   return (
-    <View style={tailwind("flex-1 p-4")}>
-      <Text style={tailwind("text-left text-3xl font-bold")}>{greet()}</Text>
-      <Text style={tailwind("text-left text-2xl font-medium mt-4")}>
-        Hot Deals
-      </Text>
-      <FlatList
-        horizontal
-        data={dataArray}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
+    <FlatList
+      style={tailwind("h-72")}
+      horizontal
+      data={dataArray}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) =>
+        item.deal ? (
           <View>
             <TouchableOpacity
-              style={tailwind("w-40 h-52 bg-gray-300 m-2 rounded-xl")}
+              onPress={() => onProductPress(item)}
+              style={tailwind("w-40 h-56 bg-gray-300 m-2 rounded-xl")}
             >
               <Image
                 resizeMode="cover"
@@ -29,9 +30,18 @@ export default function Home() {
               />
               <Text style={tailwind("text-center text-lg")}>{item.name}</Text>
               <Text
-                style={tailwind("absolute left-1 bottom-1 text-right text-sm")}
+                style={tailwind(
+                  "absolute left-1 bottom-1 text-right text-sm line-through"
+                )}
               >
                 $ {item.price}
+              </Text>
+              <Text
+                style={tailwind(
+                  "absolute left-1 bottom-5 text-right text-sm text-red-600"
+                )}
+              >
+                $ {Math.trunc(item.price * (1 - item.dealvalue))}
               </Text>
               <Text
                 style={tailwind("absolute right-1 bottom-1 text-right text-xs")}
@@ -41,6 +51,7 @@ export default function Home() {
             </TouchableOpacity>
             <View>
               <TouchableOpacity
+                onPress={() => onFavouriteButtonPress(item)}
                 style={tailwind(
                   "absolute -bottom-6 left-6 w-8 h-8 bg-gray-200 rounded-b-xl items-center pt-1"
                 )}
@@ -48,6 +59,7 @@ export default function Home() {
                 <MaterialIcons name="favorite-outline" size={24} color="red" />
               </TouchableOpacity>
               <TouchableOpacity
+                onPress={() => onCartButtonPress(item)}
                 style={tailwind(
                   "absolute -bottom-6 right-6 w-8 h-8 bg-gray-200 rounded-b-xl items-center pt-1"
                 )}
@@ -60,8 +72,10 @@ export default function Home() {
               </TouchableOpacity>
             </View>
           </View>
-        )}
-      />
-    </View>
+        ) : null
+      }
+    />
   );
-}
+};
+
+export default HotDeals;
