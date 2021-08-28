@@ -1,5 +1,5 @@
 // Favourites Array
-const favorites = [];
+const favourites = [];
 const cartItems = [];
 
 // onPress events for Buttons
@@ -10,37 +10,50 @@ const onProductPress = (object) => {
 };
 
 // Favourite Press Handle
-const onFavouriteButtonPress = (object) => {
-  // favorites.splice(0, favorites.length);
-  // console.log(favorites);
-  var alreadyInArray = favorites.includes(object);
-  console.log(alreadyInArray);
-  if (alreadyInArray) {
-    // Need to remove entry and Change Icon
-    const index = favorites.findIndex(function checkIndex(obj) {
-      return obj === object;
-    });
-    favorites.splice(index, 1);
-    console.log(`${object.name} - Removed from Favourites`);
-    console.log(favorites);
-  } else {
-    // Need to push entry and Change Icon
-    favorites.push(object);
-    console.log(`${object.name} - Added into Favourites`);
-    console.log(favorites);
-  }
+const onFavAdd = (object) => {
+  var alreadyInArray = favourites.includes(object);
+  !alreadyInArray ? favourites.push(object) : null;
+  console.log(`${object.name} - Added into Favourites`);
+  console.log(favourites);
+};
+
+const onFavRemove = (object) => {
+  const index = favourites.findIndex(function checkIndex(obj) {
+    return obj === object;
+  });
+  favourites.splice(index, 1);
+  console.log(`${object.name} - Removed from Favourites`);
+  console.log(favourites);
 };
 
 // Cart Press Handle
 
 const onCartButtonPress = (object) => {
-  console.log(`${object.name} - Added into Cart`);
+  var alreadyInArray = cartItems.includes(object);
+  if (alreadyInArray) {
+    // Need to remove entry and Change Icon
+    const index = cartItems.findIndex(function checkIndex(obj) {
+      return obj === object;
+    });
+    cartItems.splice(index, 1);
+    // Log into console
+    console.log(`${object.name} - Removed from Cart`);
+    console.log(cartItems);
+  } else {
+    // Need to push entry and Change Icon
+    cartItems.push(object);
+    // Log into console
+    console.log(`${object.name} - Added into Cart`);
+    console.log(cartItems);
+  }
 };
 
 export {
-  favorites,
+  favourites,
   cartItems,
   onProductPress,
-  onFavouriteButtonPress,
+  // onFavouriteButtonPress,
+  onFavAdd,
+  onFavRemove,
   onCartButtonPress,
 };

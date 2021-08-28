@@ -5,6 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { View } from "react-native";
 import tailwind from "tailwind-rn";
 
+// Data Arrays import from Handler.js
+import { favourites, cartItems } from "./Handler";
+
 // Screens
 import Home from "./src/Home/Home";
 import Search from "./src/Search";
@@ -23,56 +26,11 @@ import FavouriteButton from "./src/components/buttons/FavouriteButton";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  // Favourites Array
-  const favorites = [];
-
-  // onPress events for Buttons
-
-  // Product Press Handle
-  const onProductPress = (object) => {
-    console.log(object);
-  };
-
-  // Favourite Press Handle
-  const onFavouriteButtonPress = (object) => {
-    // console.log(favorites);
-    favorites.splice(0, favorites.length);
-    // var alreadyInArray = favorites.includes(object);
-    // console.log(alreadyInArray);
-    // if (alreadyInArray) {
-    //   // Need to remove entry and Change Icon
-    //   const index = favorites.findIndex(function checkIndex(obj) {
-    //     return obj === object;
-    //   });
-    //   favorites.splice(index, 1);
-    //   console.log(`${object.name} - Removed from Favourites`);
-    //   console.log(favorites);
-    // } else {
-    //   // Need to push entry and Change Icon
-    //   favorites.push(object);
-    //   console.log(`${object.name} - Added into Favourites`);
-    //   console.log(favorites);
-    // }
-  };
-
-  // Cart Press Handle
-
-  const onCartButtonPress = (object) => {
-    console.log(`${object.name} - Added into Cart`);
-  };
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-          children={() => (
-            <Home
-              onProductPress={onProductPress}
-              onFavouriteButtonPress={onFavouriteButtonPress}
-              onCartButtonPress={onCartButtonPress}
-              favorites={favorites}
-            />
-          )}
+          children={() => <Home />}
           name="Home"
           options={{
             headerRight: () => <SearchButton />,
@@ -108,7 +66,7 @@ const App = () => {
           }}
         />
         <Stack.Screen
-          children={() => <Favourite />}
+          children={() => <Favourite favourites={favourites} />}
           name="Favourite"
           options={{
             headerTitle: "Favourite",

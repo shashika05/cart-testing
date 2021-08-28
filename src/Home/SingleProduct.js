@@ -4,9 +4,10 @@ import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import tailwind from "tailwind-rn";
 
 import {
-  favorites,
   onProductPress,
-  onFavouriteButtonPress,
+  // onFavouriteButtonPress,
+  onFavAdd,
+  onFavRemove,
   onCartButtonPress,
 } from "../../Handler";
 
@@ -15,8 +16,9 @@ const SingleProduct = ({ item }) => {
   const [iscartEnabled, setCartEnabled] = useState(false);
 
   const favHandle = (item) => {
+    isfavEnabled ? onFavRemove(item) : onFavAdd(item);
     setFavEnabled(!isfavEnabled);
-    onFavouriteButtonPress(item);
+    // onFavouriteButtonPress(item);
   };
 
   const cartHandle = (item) => {
