@@ -1,6 +1,5 @@
 import React from "react";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FlatList } from "react-native";
 import tailwind from "tailwind-rn";
 
 import dataArray from "../../dataArray";

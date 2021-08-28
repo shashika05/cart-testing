@@ -3,17 +3,25 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import tailwind from "tailwind-rn";
 
-const SingleProduct = ({
-  item,
+import {
+  favorites,
   onProductPress,
   onFavouriteButtonPress,
   onCartButtonPress,
-}) => {
+} from "../../Handler";
+
+const SingleProduct = ({ item }) => {
   const [isfavEnabled, setFavEnabled] = useState(false);
+  const [iscartEnabled, setCartEnabled] = useState(false);
 
   const favHandle = (item) => {
-    setFavEnabled(() => !isfavEnabled);
+    setFavEnabled(!isfavEnabled);
     onFavouriteButtonPress(item);
+  };
+
+  const cartHandle = (item) => {
+    setCartEnabled(!iscartEnabled);
+    onCartButtonPress(item);
   };
 
   return (
@@ -64,12 +72,16 @@ const SingleProduct = ({
           )}
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => onCartButtonPress(item)}
+          onPress={() => cartHandle(item)}
           style={tailwind(
             "absolute -bottom-6 right-6 w-8 h-8 bg-gray-200 rounded-b-xl items-center pt-1"
           )}
         >
-          <MaterialCommunityIcons name="cart-outline" size={24} color="red" />
+          {iscartEnabled ? (
+            <MaterialCommunityIcons name="cart" size={24} color="red" />
+          ) : (
+            <MaterialCommunityIcons name="cart-outline" size={24} color="red" />
+          )}
         </TouchableOpacity>
       </View>
     </View>

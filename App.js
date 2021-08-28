@@ -35,19 +35,24 @@ const App = () => {
 
   // Favourite Press Handle
   const onFavouriteButtonPress = (object) => {
-    // favorites.splice(0, favorites.length);
-    const alreadyInArray = favorites.includes(object);
-    if (alreadyInArray) {
-      // Need to remove entry and Change Icon
-      const index = favorites.findIndex(object);
-      favorites.splice(index, 1);
-      console.log(`${object.name} - Removed from Favourites`);
-    } else {
-      // Need to push entry and Change Icon
-      favorites.push(object);
-      console.log(`${object.name} - Added into Favourites`);
-    }
-    console.log(favorites);
+    // console.log(favorites);
+    favorites.splice(0, favorites.length);
+    // var alreadyInArray = favorites.includes(object);
+    // console.log(alreadyInArray);
+    // if (alreadyInArray) {
+    //   // Need to remove entry and Change Icon
+    //   const index = favorites.findIndex(function checkIndex(obj) {
+    //     return obj === object;
+    //   });
+    //   favorites.splice(index, 1);
+    //   console.log(`${object.name} - Removed from Favourites`);
+    //   console.log(favorites);
+    // } else {
+    //   // Need to push entry and Change Icon
+    //   favorites.push(object);
+    //   console.log(`${object.name} - Added into Favourites`);
+    //   console.log(favorites);
+    // }
   };
 
   // Cart Press Handle
@@ -65,6 +70,7 @@ const App = () => {
               onProductPress={onProductPress}
               onFavouriteButtonPress={onFavouriteButtonPress}
               onCartButtonPress={onCartButtonPress}
+              favorites={favorites}
             />
           )}
           name="Home"
