@@ -29,7 +29,7 @@ const Favourite = ({ favourites }) => {
               >
                 <Image
                   resizeMode="cover"
-                  style={tailwind("w-32 h-32 rounded-l-xl")}
+                  style={tailwind("w-32 h-32 rounded-l-xl mr-2")}
                   source={item.imageUrl}
                 />
                 <Text style={tailwind("text-center text-lg")}>{item.name}</Text>
@@ -37,7 +37,7 @@ const Favourite = ({ favourites }) => {
                   style={tailwind(
                     `${
                       item.deal ? " line-through" : ""
-                    } absolute left-1 bottom-1 text-right text-sm`
+                    } absolute left-32 bottom-1 text-right text-sm`
                   )}
                 >
                   $ {item.price}
@@ -45,7 +45,7 @@ const Favourite = ({ favourites }) => {
                 {item.deal ? (
                   <Text
                     style={tailwind(
-                      "absolute left-1 bottom-5 text-right text-sm text-red-600"
+                      "absolute left-32 bottom-5 text-right text-sm text-red-600"
                     )}
                   >
                     $ {Math.trunc(item.price * (1 - item.dealvalue))}
@@ -63,7 +63,7 @@ const Favourite = ({ favourites }) => {
                 <TouchableOpacity
                   onPress={() => deleteFavItem(item)}
                   style={tailwind(
-                    "absolute -bottom-6 left-6 w-8 h-8 bg-gray-200 rounded-b-xl items-center pt-1"
+                    "absolute bottom-4 right-4 w-8 h-8 bg-gray-200 rounded-xl items-center pt-1"
                   )}
                 >
                   {isfavEnabled ? (
@@ -81,7 +81,7 @@ const Favourite = ({ favourites }) => {
           )}
         />
       ) : (
-        <View>
+        <View style={tailwind("justify-center items-center h-5/6")}>
           <Text>No favourites found.</Text>
           <Text>Browse items and mark as ❤</Text>
         </View>
