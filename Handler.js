@@ -27,25 +27,20 @@ const onFavRemove = (object) => {
 };
 
 // Cart Press Handle
-
-const onCartButtonPress = (object) => {
+const onCartAdd = (object) => {
   var alreadyInArray = cartItems.includes(object);
-  if (alreadyInArray) {
-    // Need to remove entry and Change Icon
-    const index = cartItems.findIndex(function checkIndex(obj) {
-      return obj === object;
-    });
-    cartItems.splice(index, 1);
-    // Log into console
-    console.log(`${object.name} - Removed from Cart`);
-    console.log(cartItems);
-  } else {
-    // Need to push entry and Change Icon
-    cartItems.push(object);
-    // Log into console
-    console.log(`${object.name} - Added into Cart`);
-    console.log(cartItems);
-  }
+  !alreadyInArray ? cartItems.push(object) : null;
+  console.log(`${object.name} - Added into cartItems`);
+  console.log(cartItems);
+};
+
+const onCartRemove = (object) => {
+  const index = cartItems.findIndex(function checkIndex(obj) {
+    return obj === object;
+  });
+  cartItems.splice(index, 1);
+  console.log(`${object.name} - Removed from cartItems`);
+  console.log(cartItems);
 };
 
 export {
@@ -55,5 +50,6 @@ export {
   // onFavouriteButtonPress,
   onFavAdd,
   onFavRemove,
-  onCartButtonPress,
+  onCartAdd,
+  onCartRemove,
 };

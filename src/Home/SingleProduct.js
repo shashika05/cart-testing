@@ -8,7 +8,8 @@ import {
   // onFavouriteButtonPress,
   onFavAdd,
   onFavRemove,
-  onCartButtonPress,
+  onCartAdd,
+  onCartRemove,
 } from "../../Handler";
 
 const SingleProduct = ({ item }) => {
@@ -22,8 +23,8 @@ const SingleProduct = ({ item }) => {
   };
 
   const cartHandle = (item) => {
+    iscartEnabled ? onCartRemove(item) : onCartAdd(item);
     setCartEnabled(!iscartEnabled);
-    onCartButtonPress(item);
   };
 
   return (

@@ -11,8 +11,8 @@ import { favourites, cartItems } from "./Handler";
 // Screens
 import Home from "./src/Home/Home";
 import Search from "./src/Search";
-import Cart from "./src/Cart";
-import Favourite from "./src/Favourite";
+import Cart from "./src/Cart/Cart";
+import Favourite from "./src/Favourite/Favourite";
 import Product from "./src/Product";
 
 // Components
@@ -56,7 +56,7 @@ const App = () => {
           }}
         />
         <Stack.Screen
-          children={() => <Cart />}
+          children={() => <Cart cartItems={cartItems} />}
           name="Cart"
           options={{
             headerTitle: "Cart",
