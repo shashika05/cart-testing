@@ -1,3 +1,6 @@
+import React from "react";
+import axios from "axios";
+
 // Favourites Array
 const favourites = [];
 const cartItems = [];
@@ -11,10 +14,18 @@ const onProductPress = (object) => {
 
 // Favourite Press Handle
 const onFavAdd = (object) => {
-  var alreadyInArray = favourites.includes(object);
-  !alreadyInArray ? favourites.push(object) : null;
-  console.log(`${object.name} - Added into Favourites`);
-  console.log(favourites);
+  // var alreadyInArray = favourites.includes(object);
+  // !alreadyInArray ? favourites.push(object) : null;
+  // console.log(`${object.name} - Added into Favourites`);
+  // console.log(favourites);
+
+  axios
+    .post(
+      "https://ap-southeast-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/cart-testing-sdufl/service/cart-testing-http-requests/incoming_webhook/add-to-fav",
+      object
+    )
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
 };
 
 const onFavRemove = (object) => {
